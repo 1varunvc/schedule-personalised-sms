@@ -76,8 +76,8 @@ function randomDelay(minSeconds, maxSeconds) {
     return Math.floor(Math.random() * (maxSeconds - minSeconds + 1) + minSeconds);
 }
 
-// Schedule the task to run every day at 7:00 AM
-cron.schedule('55 0 * * *', async () => {
+// Schedule the task to run every day at 7:03 AM
+cron.schedule('7 7 * * *', async () => {
     const delaySeconds = randomDelay(0, 180);
     const randomIndex = Math.floor(Math.random() * messages.length);
     const messageToSend = messages[randomIndex];
