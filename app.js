@@ -5,25 +5,7 @@ const winston = require('winston');
 require('winston-daily-rotate-file');
 const validator = require('validator');
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-const fs = require('fs');
-const path = require('path');
 const messages = require('./messages');
-
-const indexFilePath = path.join(__dirname, 'messageIndex.txt');
-
-function readCurrentIndex() {
-    try {
-        const index = fs.readFileSync(indexFilePath, {encoding: 'utf8'});
-        return parseInt(index, 10);
-    } catch (error) {
-        // If the file doesn't exist, start from the beginning
-        return 0;
-    }
-}
-
-function writeCurrentIndex(index) {
-    fs.writeFileSync(indexFilePath, index.toString(), {encoding: 'utf8'});
-}
 
 // Setup Winston for secure logging
 const logger = winston.createLogger({
@@ -96,22 +78,20 @@ function randomDelay(minSeconds, maxSeconds) {
 }
 
 // Schedule the task to run every day at 7:00 AM
-cron.schedule('0 7 * * *', async () => {
-    const currentIndex = readCurrentIndex();
-    const messageToSend = messages[currentIndex];
+cron.schedule('25 22 * * *', async () => {
     const delaySeconds = randomDelay(0, 180);
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    const messageToSend = messages[randomIndex];
 
-    logMessage(`Current index: ${currentIndex}`);
+    logMessage(`Sending message at the index: ${randomIndex}`);
 
     setTimeout(async () => {
         logMessage(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1}`);
         const success = await sendSMS(process.env.PHONE_NUMBER_1, messageToSend);
         if (success) {
-            const nextIndex = (currentIndex + 1) % messages.length;
-            writeCurrentIndex(nextIndex);
-            logMessage(`Message sent successfully. Next index: ${nextIndex}`);
+            logMessage(`Message sent successfully.`);
         } else {
-            logMessage(`Unable to send the scheduled message after retries. Index remains at ${currentIndex}.`);
+            logMessage(`Unable to send the scheduled message after retries.`);
         }
     }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
 }, {
