@@ -85,8 +85,8 @@ cron.schedule('7 7 * * *', async () => {
     logMessage(`Sending message at the index: ${randomIndex}`);
 
     setTimeout(async () => {
-        logMessage(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1}`);
-        const success = await sendSMS(process.env.PHONE_NUMBER_1, messageToSend);
+        logMessage(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_2}`);
+        const success = await sendSMS(process.env.PHONE_NUMBER_2, messageToSend);
         if (success) {
             logMessage(`Message sent successfully.`);
         } else {
