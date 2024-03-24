@@ -13,7 +13,7 @@ const indexFilePath = path.join(__dirname, 'messageIndex.txt');
 
 function readCurrentIndex() {
     try {
-        const index = fs.readFileSync(indexFilePath, { encoding: 'utf8' });
+        const index = fs.readFileSync(indexFilePath, {encoding: 'utf8'});
         return parseInt(index, 10);
     } catch (error) {
         // If the file doesn't exist, start from the beginning
@@ -22,33 +22,23 @@ function readCurrentIndex() {
 }
 
 function writeCurrentIndex(index) {
-    fs.writeFileSync(indexFilePath, index.toString(), { encoding: 'utf8' });
+    fs.writeFileSync(indexFilePath, index.toString(), {encoding: 'utf8'});
 }
 
 // Setup Winston for secure logging
 const logger = winston.createLogger({
-    transports: [
-        new winston.transports.DailyRotateFile({
-            filename: 'logs/application-%DATE%.log',
-            datePattern: 'YYYY-MM-DD',
-            zippedArchive: true,
-            maxSize: '20m',
-            maxFiles: '14d'
-        }),
-        new winston.transports.Console({
-            format: winston.format.simple(),
-        })
-    ],
-    format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.printf(info => `${info.timestamp} - ${info.message}`)
-    ),
-    exceptionHandlers: [
-        new winston.transports.File({ filename: 'logs/exceptions.log' })
-    ],
-    rejectionHandlers: [
-        new winston.transports.File({ filename: 'logs/rejections.log' })
-    ]
+    transports: [new winston.transports.DailyRotateFile({
+        filename: 'logs/application-%DATE%.log',
+        datePattern: 'YYYY-MM-DD',
+        zippedArchive: true,
+        maxSize: '20m',
+        maxFiles: '14d'
+    }), new winston.transports.Console({
+        format: winston.format.simple(),
+    })],
+    format: winston.format.combine(winston.format.timestamp(), winston.format.printf(info => `${info.timestamp} - ${info.message}`)),
+    exceptionHandlers: [new winston.transports.File({filename: 'logs/exceptions.log'})],
+    rejectionHandlers: [new winston.transports.File({filename: 'logs/rejections.log'})]
 });
 
 // Securely log messages without sensitive data
@@ -58,7 +48,7 @@ function logMessage(message) {
 
 // Function to validate phone numbers
 function isValidPhoneNumber(phoneNumber) {
-    return validator.isMobilePhone(phoneNumber, 'any', { strictMode: false });
+    return validator.isMobilePhone(phoneNumber, 'any', {strictMode: false});
 }
 
 // Utility function for delay
@@ -73,9 +63,7 @@ async function sendSMS(phoneNumber, message, attempt = 0) {
 
     try {
         const response = await client.messages.create({
-            body: message,
-            from: process.env.TWILIO_PHONE_NUMBER,
-            to: phoneNumber
+            body: message, from: process.env.TWILIO_PHONE_NUMBER, to: phoneNumber
         });
         logMessage(`SMS sent successfully to ${phoneNumber}: ${response.sid}`);
         return true; // Indicate success
@@ -108,43 +96,26 @@ function randomDelay(minSeconds, maxSeconds) {
 }
 
 // Schedule the task to run every day at 7:00 AM
-cron.schedule('21 20 * * *', async () => {
+cron.schedule('29 20 * * *', async () => {
     const currentIndex = readCurrentIndex();
     const messageToSend = messages[currentIndex];
+    const delaySeconds = randomDelay(0, 180);
 
     logMessage(`Current index: ${currentIndex}`);
-    logMessage(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1}`);
 
-    const success = await sendSMS(process.env.PHONE_NUMBER_1, messageToSend);
-
-    if (success) {
-        const nextIndex = (currentIndex + 1) % messages.length;
-        writeCurrentIndex(nextIndex);
-        logMessage(`Message sent successfully. Next index: ${nextIndex}`);
-    } else {
-        logMessage(`Unable to send the scheduled message after retries. Index remains at ${currentIndex}.`);
-    }
+    setTimeout(async () => {
+        logMessage(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1}`);
+        const success = await sendSMS(process.env.PHONE_NUMBER_1, messageToSend);
+        if (success) {
+            const nextIndex = (currentIndex + 1) % messages.length;
+            writeCurrentIndex(nextIndex);
+            logMessage(`Message sent successfully. Next index: ${nextIndex}`);
+        } else {
+            logMessage(`Unable to send the scheduled message after retries. Index remains at ${currentIndex}.`);
+        }
+    }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
 }, {
-    scheduled: true,
-    timezone: "Asia/Kolkata"
+    scheduled: true, timezone: "Asia/Kolkata"
 });
-
-
-// // Schedule the task to run every day at 7:00 AM
-// cron.schedule('0 7 * * *', () => {
-//     // Calculate a random delay between 0 and 180 seconds (3 minutes)
-//     const delaySeconds = randomDelay(0, 180);
-//
-//     setTimeout(async () => {
-//         logMessage('Starting to send scheduled SMS messages after a delay...');
-//         const success = await sendSMS(process.env.PHONE_NUMBER_1, 'Good morning! Your first message.');
-//         // sendSMS(process.env.PHONE_NUMBER_2, 'Good morning! Your second message.');
-//     }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
-// }, {
-//     scheduled: true,
-//     timezone: "Your/Timezone"
-// });
-
-// sendSMS(process.env.PHONE_NUMBER_1, 'Good morning! Your first message.');
 
 logMessage('SMS scheduler with approximate time started.');
