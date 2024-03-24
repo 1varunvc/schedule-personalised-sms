@@ -96,7 +96,7 @@ function randomDelay(minSeconds, maxSeconds) {
 }
 
 // Schedule the task to run every day at 7:00 AM
-cron.schedule('29 20 * * *', async () => {
+cron.schedule('0 7 * * *', async () => {
     const currentIndex = readCurrentIndex();
     const messageToSend = messages[currentIndex];
     const delaySeconds = randomDelay(0, 180);
