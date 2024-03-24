@@ -77,7 +77,7 @@ function randomDelay(minSeconds, maxSeconds) {
 }
 
 // Schedule the task to run every day at 7:00 AM
-cron.schedule('30 0 * * *', async () => {
+cron.schedule('35 0 * * *', async () => {
     const delaySeconds = randomDelay(0, 180);
     const randomIndex = Math.floor(Math.random() * messages.length);
     const messageToSend = messages[randomIndex];
@@ -92,7 +92,7 @@ cron.schedule('30 0 * * *', async () => {
         } else {
             logMessage(`Unable to send the scheduled message after retries.`);
         }
-    }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
+    }, 0); // Convert seconds to milliseconds for setTimeout
 }, {
     scheduled: true, timezone: "Asia/Kolkata"
 });
