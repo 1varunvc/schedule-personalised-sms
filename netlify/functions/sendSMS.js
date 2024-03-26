@@ -31,9 +31,9 @@ exports.handler = async (event) => {
 
         try {
             logger.info(`Sending message at the index: ${randomIndex}`);
-            logger.info(`Sending message: "${message}" to ${process.env.PHONE_NUMBER_1} with a delay of ` + delaySeconds/60 + ` minutes.`);
+            logger.info(`Sending message: "${message}" to ${process.env.PHONE_NUMBER_1} with a delay of ` + (delaySeconds/60).toFixed(2) + ` minutes.`);
 
-            await new Promise(resolve => setTimeout(resolve, 0));
+            await new Promise(resolve => setTimeout(resolve, 0)); // Convert seconds to milliseconds for setTimeout
             const response = await client.messages.create({
                 body: message,
                 from: process.env.TWILIO_PHONE_NUMBER,

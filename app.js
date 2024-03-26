@@ -1,5 +1,12 @@
-// As we are using the serverless function (./netlify/functions/sendSMS.js,) this file app.js is essentially not required.
-// However, to test sendSMS.js directly from the terminal locally, use the command node app.js.
+/* As we are using the serverless function (./netlify/functions/sendSMS.js,) this file app.js is essentially not required.
+However, to test sendSMS.js directly from the terminal locally, use the command node app.js.
+
+For testing, you can also use:
+netlify dev (in one terminal)
+curl -X POST http://localhost:8888/.netlify/functions/sendSMS -H "Content-Type: application/json" -d '{"phoneNumber": "+12345678901"}' (in another terminal)
+
+Modify the port 8888 if your netlify dev server uses a different one.
+*/
 
 require('dotenv').config();
 const messages = require('./messages');
@@ -17,7 +24,7 @@ function randomDelay(minSeconds, maxSeconds) {
     const messageToSend = messages[randomIndex];
 
     logger.info(`Sending message at the index: ${randomIndex}`);
-    logger.info(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1}`);
+    logger.info(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1} with a delay of ` + (delaySeconds/60).toFixed(2) + ` minutes.`);
 
     setTimeout(async () => {
         fetch("https://6602954dd2931303a18ee995--luxury-brioche-4b4b2f.netlify.app/.netlify/functions/sendSMS", {
@@ -36,7 +43,7 @@ function randomDelay(minSeconds, maxSeconds) {
             .catch(error => {
                 logger.error("Request failed: " + error);
             });
-    }, 0); // Convert seconds to milliseconds for setTimeout
+    }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
 })();
 
 
