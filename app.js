@@ -14,13 +14,13 @@ function randomDelay(minSeconds, maxSeconds) {
     const messageToSend = messages[randomIndex];
 
     logger.info(`Sending message at the index: ${randomIndex}`);
-    logger.info(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_2}`);
+    logger.info(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1}`);
 
     setTimeout(async () => {
         fetch("https://6602954dd2931303a18ee995--luxury-brioche-4b4b2f.netlify.app/.netlify/functions/sendSMS", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({phoneNumber: process.env.PHONE_NUMBER_2, message: messageToSend})
+            body: JSON.stringify({phoneNumber: process.env.PHONE_NUMBER_1, message: messageToSend})
         })
             .then(response => response.json())
             .then(data => {
@@ -33,7 +33,7 @@ function randomDelay(minSeconds, maxSeconds) {
             .catch(error => {
                 logger.error("Request failed: " + error);
             });
-    }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
+    }, 0); // Convert seconds to milliseconds for setTimeout
 })();
 
 
