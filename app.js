@@ -1,6 +1,9 @@
+// As we are using the serverless function (./netlify/functions/sendSMS.js,) this file app.js is essentially not required.
+// However, to test sendSMS.js directly from the terminal locally, use the command node app.js.
+
 require('dotenv').config();
-const messages = require('messages');
-const logger = require('logger');
+const messages = require('./messages');
+const logger = require('./logger');
 
 // Function to simulate a random delay
 function randomDelay(minSeconds, maxSeconds) {
