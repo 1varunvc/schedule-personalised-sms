@@ -41,6 +41,11 @@ async function sendSMS(phoneNumber, message, attempt = 0) {
     const maxAttempts = 3; // Max retry attempts
     const retryDelay = 5000; // Delay between retries in milliseconds
 
+    if (!isValidPhoneNumber(phoneNumber)) {
+        logMessage(`Invalid phone number: ${phoneNumber}`);
+        return false;
+    }
+
     try {
         const response = await client.messages.create({
             body: message, from: process.env.TWILIO_PHONE_NUMBER, to: phoneNumber
