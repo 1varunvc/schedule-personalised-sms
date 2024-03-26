@@ -4,21 +4,32 @@ require('winston-daily-rotate-file');
 const validator = require('validator');
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const messages = require('./messages');
+const runningLocally = (process.env.ENVIRONMENT == "Local")
 
-// Setup Winston for secure logging
-const logger = winston.createLogger({
-    transports: [new winston.transports.DailyRotateFile({
+// Configure transports based on environment
+const transports = [];
+
+if (runningLocally) {
+    // Local environment: Log to files
+    transports.push(new winston.transports.DailyRotateFile({
         filename: 'logs/application-%DATE%.log',
         datePattern: 'YYYY-MM-DD',
         zippedArchive: true,
         maxSize: '20m',
         maxFiles: '14d'
-    }), new winston.transports.Console({
-        format: winston.format.simple(),
-    })],
-    format: winston.format.combine(winston.format.timestamp(), winston.format.printf(info => `${info.timestamp} - ${info.message}`)),
-    exceptionHandlers: [new winston.transports.File({filename: 'logs/exceptions.log'})],
-    rejectionHandlers: [new winston.transports.File({filename: 'logs/rejections.log'})]
+    }));
+} else {
+    // Netlify environment: Log to console
+    transports.push(new winston.transports.Console());
+}
+
+// Initialize Winston logger for secure logging and use dynamic transports
+const logger = winston.createLogger({
+    level: 'info', // Default logging level
+    format: winston.format.combine(winston.format.timestamp(), winston.format.printf(info => `${info.timestamp} - ${info.level}: ${info.message}`)),
+    transports: transports,
+    exceptionHandlers: runningLocally ? [new winston.transports.File({filename: 'logs/exceptions.log'})] : [new winston.transports.Console()],
+    rejectionHandlers: runningLocally ? [new winston.transports.File({filename: 'logs/rejections.log'})] : [new winston.transports.Console()]
 });
 
 // Securely log messages without sensitive data
@@ -87,16 +98,35 @@ function randomDelay(minSeconds, maxSeconds) {
     const messageToSend = messages[randomIndex];
 
     logMessage(`Sending message at the index: ${randomIndex}`);
+    logMessage(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_2}`);
 
-    setTimeout(async () => {
-        logMessage(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_2}`);
+    if (runningLocally) {
         const success = await sendSMS(process.env.PHONE_NUMBER_2, messageToSend);
         if (success) {
             logMessage(`Message sent successfully.`);
         } else {
             logMessage(`Unable to send the scheduled message after retries.`);
         }
-    }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
+    } else {
+        setTimeout(async () => {
+            fetch("https://your-netlify-app/.netlify/functions/sendSMS", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({phoneNumber: process.env.PHONE_NUMBER_2, message: messageToSend})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        logMessage("Message sent successfully.");
+                    } else {
+                        logMessage("Unable to send the scheduled message after retries.");
+                    }
+                })
+                .catch(error => {
+                    logMessage("Request failed: " + error);
+                });
+        }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
+    }
 })();
 
 
