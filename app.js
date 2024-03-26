@@ -1,5 +1,4 @@
 require('dotenv').config();
-const cron = require('node-cron');
 const winston = require('winston');
 require('winston-daily-rotate-file');
 const validator = require('validator');
@@ -77,7 +76,7 @@ function randomDelay(minSeconds, maxSeconds) {
 }
 
 // Schedule the task to run every day at 7:03 AM
-cron.schedule('3 7 * * *', async () => {
+(async () => {
     const delaySeconds = randomDelay(0, 180);
     const randomIndex = Math.floor(Math.random() * messages.length);
     const messageToSend = messages[randomIndex];
@@ -93,8 +92,7 @@ cron.schedule('3 7 * * *', async () => {
             logMessage(`Unable to send the scheduled message after retries.`);
         }
     }, delaySeconds * 1000); // Convert seconds to milliseconds for setTimeout
-}, {
-    scheduled: true, timezone: "Asia/Kolkata"
-});
+})();
+
 
 logMessage('SMS scheduler with approximate time started.');
