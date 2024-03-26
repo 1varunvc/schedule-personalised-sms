@@ -12,9 +12,10 @@ exports.handler = async (event) => {
     const delaySeconds = randomDelay(0, 180);
     const randomIndex = Math.floor(Math.random() * messages.length);
     const messageToSend = messages[randomIndex];
+    const phoneNumber = process.env.PHONE_NUMBER_1;
 
-    // Extract phoneNumber and message from event body
-    const {phoneNumber, message} = JSON.parse(event.body);
+    // // Extract phoneNumber and message from event body
+    // const {phoneNumber, message} = JSON.parse(event.body);
 
     logger.info('SMS scheduler (with approximate time) started.');
 

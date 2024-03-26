@@ -27,7 +27,7 @@ function randomDelay(minSeconds, maxSeconds) {
     logger.info(`Sending message: "${messageToSend}" to ${process.env.PHONE_NUMBER_1} with a delay of ` + (delaySeconds/60).toFixed(2) + ` minutes.`);
 
     setTimeout(async () => {
-        fetch("https://6602954dd2931303a18ee995--luxury-brioche-4b4b2f.netlify.app/.netlify/functions/sendSMS", {
+        fetch("https://luxury-brioche-4b4b2f.netlify.app/.netlify/functions/sendSMS", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({phoneNumber: process.env.PHONE_NUMBER_1, message: messageToSend})
