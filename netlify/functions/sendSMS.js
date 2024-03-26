@@ -12,8 +12,9 @@ exports.handler = async (event) => {
     const delaySeconds = randomDelay(0, 180);
     const randomIndex = Math.floor(Math.random() * messages.length);
     const messageToSend = messages[randomIndex];
-    const phoneNumber = process.env.PHONE_NUMBER_1;
+    const phoneNumber = process.env.PHONE_NUMBER_2;
 
+    // The following is commented out as we are no longer using the body of a request to assign the phoneNumber and the message.
     // // Extract phoneNumber and message from event body
     // const {phoneNumber, message} = JSON.parse(event.body);
 
@@ -21,7 +22,7 @@ exports.handler = async (event) => {
 
     // Validate phone number
     if (!validator.isMobilePhone(phoneNumber, 'any', {strictMode: false})) {
-        logger.error(`Invalid phone number: ${phoneNumber}`);
+        logger.error(`Invalid phone number: PHONE_NUMBER_2`);
         return {statusCode: 400, body: JSON.stringify({success: false, message: "Invalid phone number."})};
     }
 
@@ -32,18 +33,18 @@ exports.handler = async (event) => {
 
         try {
             logger.info(`Sending message at the index: ${randomIndex}`);
-            logger.info(`Sending message: "${message}" to ${process.env.PHONE_NUMBER_1} with a delay of ` + (delaySeconds/60).toFixed(2) + ` minutes.`);
+            logger.info(`Sending message: "${message}" to PHONE_NUMBER_2 with a delay of ` + (delaySeconds/60).toFixed(2) + ` minutes.`);
 
-            await new Promise(resolve => setTimeout(resolve, 0)); // Convert seconds to milliseconds for setTimeout
+            await new Promise(resolve => setTimeout(resolve, delaySeconds * 1000)); // Convert seconds to milliseconds for setTimeout
             const response = await client.messages.create({
                 body: message,
                 from: process.env.TWILIO_PHONE_NUMBER,
                 to: phoneNumber
             });
-            logger.info(`SMS sent successfully to ${phoneNumber}: ${response.sid}`);
+            logger.info(`SMS sent successfully to PHONE_NUMBER_2: ${response.sid}`);
             return {statusCode: 200, body: JSON.stringify({success: true, message: "SMS sent successfully."})};
         } catch (error) {
-            logger.info(`Attempt ${attempt + 1}: Failed to send SMS to ${phoneNumber}: ${error.message}`);
+            logger.info(`Attempt ${attempt + 1}: Failed to send SMS to PHONE_NUMBER_2: ${error.message}`);
 
             if (error.response) {
                 logger.error(`SMS send error: Server responded with status ${error.response.status}`);

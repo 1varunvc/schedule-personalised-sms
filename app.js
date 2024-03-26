@@ -3,7 +3,7 @@ However, to test sendSMS.js directly from the terminal locally, use the command 
 
 For testing, you can also use:
 netlify dev (in one terminal)
-curl -X POST http://localhost:8888/.netlify/functions/sendSMS -H "Content-Type: application/json" -d '{"phoneNumber": "+12345678901"}' (in another terminal)
+curl -X POST http://localhost:8888/.netlify/functions/sendSMS -H "Content-Type: application/json" (in another terminal.)
 
 Modify the port 8888 if your netlify dev server uses a different one.
 */
