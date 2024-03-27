@@ -67,5 +67,5 @@ exports.handler = async (event) => {
     };
 
     // Execute sendSMS function
-    return sendSMS(process.env.PHONE_NUMBER_1, messageToSend);
+    return sendSMS(phoneNumber, messageToSend);
 };
