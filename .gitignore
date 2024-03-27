@@ -1,6 +1,7 @@
 # Custom-added
 logs
 messageIndex.txt
+netlify.toml
 
 # Logs
 logs
@@ -132,3 +133,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Local Netlify folder
+.netlify
