@@ -23,6 +23,6 @@ jobs:
 
     - name: Push to Public Repository
       run: |
-        git remote add public https://${{ secrets.INTERNAL_PAT }}@github.com/1varunvc/schedule-personalised-sms.git
+        git remote add public https://1varunvc:${{ secrets.INTERNAL_PAT }}@github.com/1varunvc/schedule-personalised-sms.git
         git fetch public
         git push public main --force
