@@ -3,7 +3,7 @@ name: Sync to Public Repository
 on:
   push:
     branches:
-      - main  # The following job will run when commits are pushed to the main branch.
+      - main  # This job will run when commits are pushed to the main branch.
 
 jobs:
   sync:
@@ -17,11 +17,11 @@ jobs:
         git config --global user.name "Varun Chawla"
 
     - name: Remove Private Files
-      run: rm -f messages.js
+      run: rm -f messages.js  # Ensure the path is correct if messages.js is not in the root
 
     - name: Push to Public Repository
       run: |
-        git remote add public https://github.com/1varunvc/schedule-personalised-sms.git
+        git remote add public https://${{ secrets.GITHUB_INTERNAL }}@github.com/1varunvc/schedule-personalised-sms.git
         git push public main --force
       env:
         ACCESS_TOKEN: ${{ secrets.GITHUB_INTERNAL }}
