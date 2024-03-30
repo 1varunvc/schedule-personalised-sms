@@ -26,5 +26,3 @@ jobs:
         git remote add public https://${{ secrets.INTERNAL_PAT }}@github.com/1varunvc/schedule-personalised-sms.git
         git fetch public
         git push public main --force
-      env:
-        ACCESS_TOKEN: ${{ secrets.INTERNAL_PAT }}
