@@ -27,6 +27,6 @@ jobs:
         git commit -m "Update TIMESTAMP"
         git push https://github.com/1varunvc/schedule-personalised-sms.git
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        FIRST_NAME: Mona
-        LAST_NAME: Octocat
+        GITHUB_TOKEN: ${{ secrets.INTERNAL_PAT }}
+        FIRST_NAME: Varun
+        LAST_NAME: Chawla
