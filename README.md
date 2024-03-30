@@ -77,7 +77,7 @@ Exemplary `messages.js` file:
 module.exports = [
    "Test Message 00",
    "Test Message 01",
-   "Test Message 01"
+   "Test Message 02"
 ]
 ```
 
