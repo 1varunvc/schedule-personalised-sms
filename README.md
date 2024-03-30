@@ -83,17 +83,52 @@ In netlify/functions/sendSMS.js, change const phoneNumber = process.env.PHONE_NU
 
 Modify `netlify/functions/sendSMS.js` to use `PHONE_NUMBER_1` for local development testing. Switch to `PHONE_NUMBER_2` when configuring for production.
 
+
 To test the function locally, you can use the Netlify CLI:
 
+#### A. Install the Netlify CLI
+
+Open your terminal and run the following command to install the Netlify CLI globally on your system:
+
+```bash
+npm install netlify-cli -g
+```
+
+This command installs the Netlify CLI globally, allowing you to access it from any directory in your terminal.
+
+#### B. Authenticate with Netlify
+
+After installing the CLI, you need to authenticate your Netlify account. Run the following command:
+
+```bash
+netlify login
+```
+
+This command will open a browser window asking you to log in to Netlify and authorize the Netlify CLI. Follow the prompts to authenticate. Once authenticated, you can close the browser window.
+
+#### C. Initialize Your Site
+
+Navigate to your project's directory in the terminal. If you're deploying a site for the first time, you can link your project to Netlify using:
+
+```bash
+netlify init
+```
+
+This command will guide you through setting up a new site on Netlify if your project isn't already linked or it will help you link to an existing site. You'll have options to set up continuous deployment from a git provider.
+
+#### C. Run the script locally
 ```bash
 netlify dev
 ```
 
+#### D. Make a triggering API call
 In another terminal, run:
 
 ```bash
 curl -X GET http://localhost:8888/.netlify/functions/sendSMS -H "Content-Type: application/json"
 ```
+
+Replace `8888` with the actual port number the site is running on.
 
 ### 8: Deploy to Netlify
 Before deploying, ensure that all local modifications have been committed and pushed to your GitHub repository. Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
