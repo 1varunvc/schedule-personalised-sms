@@ -196,8 +196,6 @@ Remember to replace placeholders like `your-netlify-site-name`, `your-function-n
 
 ---
 
-Ensure to replace generic instructions with specific commands or URLs relevant to your project where necessary.
-
 ## Usage
 
 Once deployed, the application will automatically send SMS messages at the scheduled times. You can modify the schedule and message content by editing the serverless function and redeploying.
