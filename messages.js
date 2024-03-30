@@ -1,5 +1,4 @@
 module.exports = [
     "Test message 00",
-    "Test message 01",
-    "Test message 02"
+    "Test message 01"
 ]
