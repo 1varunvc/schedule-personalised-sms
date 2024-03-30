@@ -25,4 +25,8 @@ jobs:
       run: |
         git add TIMESTAMP.txt
         git commit -m "Update TIMESTAMP"
-        git push https://${{ secrets.INTERNAL_PAT }}@github.com/1varunvc/schedule-personalised-sms.git
+        git push https://github.com/1varunvc/schedule-personalised-sms.git
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        FIRST_NAME: Mona
+        LAST_NAME: Octocat
