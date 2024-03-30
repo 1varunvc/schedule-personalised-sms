@@ -1,0 +1,12 @@
+[build]
+publish = "." # Indicates there's no specific directory for static content
+functions = "netlify/functions" # Directory for serverless functions
+
+[build.environment]
+TWILIO_ACCOUNT_SID = ''
+TWILIO_AUTH_TOKEN = ''
+TWILIO_PHONE_NUMBER = ''
+PHONE_NUMBER_1 = ''
+PHONE_NUMBER_2 = ''
+SMS_API_ENDPOINT = 'https://api.twilio.com/2010-04-01/Accounts/TWILIO_ACCOUNT_SID/Messages.json'
+ENVIRONMENT = "PRODUCTION"
