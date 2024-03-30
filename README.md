@@ -25,8 +25,8 @@ Create and set up your Twilio account to manage SMS services. This involves veri
 ### 2. Clone the Repository
 
 ```bash
-git clone https://github.com/1varunvc/sms-scheduler-01.git
-cd sms-scheduler-01
+git clone https://github.com/1varunvc/schedule-personalised-sms.git
+cd schedule-personalised-sms
 ```
 
 ### 3. Install Dependencies
