@@ -1,6 +1,6 @@
 # Scheduled Personalised SMS
 
-This application automates sending personalized SMS reminders at scheduled times. Leveraging Twilio for SMS services and Netlify Functions for a serverless architecture, it's designed to send daily morning reminders or notifications.
+This application automates sending personalized SMS reminders at scheduled times. Leveraging Twilio for SMS services and Netlify Functions for a serverless architecture, it's designed to send, say, daily morning reminders or notifications.
 
 ## Features
 
@@ -211,4 +211,4 @@ Once deployed, the application will automatically send SMS messages at the sched
 
 ## Contributing
 
-Contributions to the SMS Scheduler application are welcome. Please ensure to follow the best practices for coding and documentation. Create a pull request with a clear description of your changes.
+Contributions to the application are welcome. Please ensure to follow the best practices for coding and documentation. Create a pull request with a clear description of your changes.
