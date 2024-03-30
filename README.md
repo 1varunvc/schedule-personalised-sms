@@ -7,7 +7,7 @@ The SMS Scheduler application automates sending personalized SMS reminders at sc
 - **Serverless Architecture**: Utilizes Netlify Functions for a scalable and maintenance-free backend.
 - **Flexible Scheduling**: Schedule SMS messages to be sent at specific times.
 - **Twilio Integration**: Leverages Twilio's robust API for reliable SMS delivery.
-- **Secure Configuration**: Uses environment variables to securely store sensitive information.
+- **Secure Configuration**: Employs environment variables to securely store sensitive information.
 
 ## Prerequisites
 
@@ -88,7 +88,7 @@ In netlify/functions/sendSMS.js, change const phoneNumber = process.env.PHONE_NU
 
 ### 7. Local Development
 
-Adjust netlify/functions/sendSMS.js to utilize PHONE_NUMBER_1 for local development testing. Switch to PHONE_NUMBER_2 when configuring for production.
+Modify `netlify/functions/sendSMS.js` to use `PHONE_NUMBER_1` for local development testing. Switch to `PHONE_NUMBER_2` when configuring for production.
 
 To test the function locally, you can use the Netlify CLI:
 
@@ -97,17 +97,18 @@ netlify dev
 ```
 
 In another terminal, run:
+
 ```bash
 curl -X GET http://localhost:8888/.netlify/functions/sendSMS -H "Content-Type: application/json"
 ```
 
-### 5. Deploy to Netlify
-Ensure your local modifications are committed and pushed to your GitHub repository. Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
+### 8: Deploy to Netlify
+Before deploying, ensure that all local modifications have been committed and pushed to your GitHub repository. Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
 
 For a detailed guide, see 'Setting Up and Deploying to Netlify' below.
 
-### 6. Schedule the Function
-Leverage EasyCron to automate the execution of your Netlify function, adhering to your desired scheduling. Configure the cron job to target your function's Netlify endpoint URL, ensuring reliable, timed SMS dispatch.
+### 9: Schedule the Function
+Utilize EasyCron to automate the execution of your Netlify function, adhering to your desired scheduling. Configure the cron job to target your function's Netlify endpoint URL, ensuring reliable, timed SMS dispatch.
 
 For a detailed guide, see 'Setting Up EasyCron' below.
 
