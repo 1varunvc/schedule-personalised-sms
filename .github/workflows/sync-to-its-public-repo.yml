@@ -1,0 +1,27 @@
+name: Sync to Public Repository
+
+on:
+  push:
+    branches:
+      - main  # The following job will run when commits are pushed to the main branch.
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Configure Git
+      run: |
+        git config --global user.email "1varunvc@gmail.com"
+        git config --global user.name "Varun Chawla"
+
+    - name: Remove Private Files
+      run: rm -f messages.js
+
+    - name: Push to Public Repository
+      run: |
+        git remote add public https://github.com/1varunvc/schedule-personalised-sms.git
+        git push public main --force
+      env:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_INTERNAL }}
