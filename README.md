@@ -1,6 +1,6 @@
 # Scheduled Personalised SMS
 
-This application automates sending personalized SMS reminders at scheduled times. Leveraging Twilio for SMS services and Netlify Functions for a serverless architecture, it's designed to send, say, daily morning reminders or notifications.
+This application schedules personalized SMS'. Leveraging Twilio for SMS services and Netlify Functions for a serverless architecture, it's designed to send, say, daily morning reminders or notifications!
 
 ## Features
 
@@ -72,7 +72,7 @@ When deploying to Netlify, remember to set sensitive environment variables (like
 ### 5: Messages Configuration (Important)
 **Create** a new `messages.js` file in the root directory and populate it with your personalized message. The application is designed to randomly select messages from this file.
 
-Examplary `messages.js` file:
+Exemplary `messages.js` file:
 ```bash
 module.exports = [
    "Test Message 00",
