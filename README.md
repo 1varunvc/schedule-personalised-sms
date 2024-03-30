@@ -37,7 +37,7 @@ npm install
 
 ### 4. Configure Environment Variables
 
-Configure your environment variables by duplicating .env.example and netlify.toml.example files to .env and netlify.toml, respectively. Populate these files with your specific configurations, including Twilio account details and the phone numbers for testing and production.
+Configure your environment variables by duplicating `.env.example` and `netlify.toml.example` files to `.env` and `netlify.toml`, respectively. Populate these files with your specific configurations, including Twilio account details and the phone numbers for testing and production.
 
 #### A. Environment Variables File
 
@@ -82,7 +82,7 @@ module.exports = [
 ```
 
 ### 6: Adjust for Local Development and Production
-In netlify/functions/sendSMS.js, change const phoneNumber = process.env.PHONE_NUMBER_2; to const phoneNumber = process.env.PHONE_NUMBER_1; for local testing, and back to PHONE_NUMBER_2 for production. 
+In `netlify/functions/sendSMS.js`, change `const phoneNumber = process.env.PHONE_NUMBER_2;` to `const phoneNumber = process.env.PHONE_NUMBER_1`; for local testing, and back to `process.env.PHONE_NUMBER_2` for production. 
 
 ### 7. Local Development
 
