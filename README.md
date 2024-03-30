@@ -69,8 +69,17 @@ cp netlify.toml.example netlify.toml
 
 When deploying to Netlify, remember to set sensitive environment variables (like `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, etc.) directly in the Netlify UI under Site Settings > Build & Deploy > Environment, to keep them secure.
 
-### 5: Messages Configuration
-Populate `messages.js` with your personalized messages. The application is designed to randomly select messages from this file.
+### 5: Messages Configuration (Important)
+**Create** a new `messages.js` file in the root directory and populate it with your personalized message. The application is designed to randomly select messages from this file.
+
+Examplary `messages.js` file:
+```bash
+module.exports = [
+   "Test Message 00",
+   "Test Message 01",
+   "Test Message 01"
+]
+```
 
 ### 6: Adjust for Local Development and Production
 In netlify/functions/sendSMS.js, change const phoneNumber = process.env.PHONE_NUMBER_2; to const phoneNumber = process.env.PHONE_NUMBER_1; for local testing, and back to PHONE_NUMBER_2 for production. 
