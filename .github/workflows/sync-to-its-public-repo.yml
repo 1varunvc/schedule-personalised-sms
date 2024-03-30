@@ -17,11 +17,14 @@ jobs:
         git config --global user.name "Varun Chawla"
 
     - name: Remove Private Files
-      run: rm -f messages.js  # Ensure the path is correct if messages.js is not in the root
+      run: |
+        rm -f messages.js  # Ensure the path is correct if messages.js is not in the root
+        rm -f .github
 
     - name: Push to Public Repository
       run: |
-        git remote add public https://${{ secrets.GITHUB_INTERNAL }}@github.com/1varunvc/schedule-personalised-sms.git
+        git remote add public https://${{ secrets.INTERNAL_PAT }}@github.com/1varunvc/schedule-personalised-sms.git
+        git fetch public
         git push public main --force
       env:
-        ACCESS_TOKEN: ${{ secrets.GITHUB_INTERNAL }}
+        ACCESS_TOKEN: ${{ secrets.INTERNAL_PAT }}
