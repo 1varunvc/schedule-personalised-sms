@@ -25,7 +25,7 @@ jobs:
       run: |
         git add TIMESTAMP.txt
         git commit -m "Update TIMESTAMP"
-        echo env.PAT
+        echo ${{ env.PAT }}
         git push https://${{ env.PAT }}@github.com/1varunvc/schedule-personalised-sms.git
       env:
         PAT: ${{ secrets.INTERNAL_PAT }}
