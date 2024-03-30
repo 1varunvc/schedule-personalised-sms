@@ -29,5 +29,5 @@ git checkout main
 git push
 git branch -D temp-public-sync
 
-# Optionally, remove the remote if it was only added for this operation
+# # Optionally, remove the remote if it was only added for this operation
 # git remote remove public
