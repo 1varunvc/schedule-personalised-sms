@@ -20,7 +20,7 @@ The SMS Scheduler application automates sending personalized SMS reminders at sc
 ## Setup Instructions
 
 ### 1: Twilio Account Setup
-Create and set up your Twilio account to manage SMS services. This involves verifying two phone numbers: one for local testing and the other for production use. For a detailed guide, see '[Getting Twilio Credentials](https://github.com/1varunvc/sms-scheduler-01/edit/main/README.md#getting-twilio-credentials)' below.
+Create and set up your Twilio account to manage SMS services. This involves verifying two phone numbers: one for local testing and the other for production use. For a detailed guide, see '[Getting Twilio Credentials](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#getting-twilio-credentials)' below.
 
 ### 2. Clone the Repository
 
@@ -133,12 +133,12 @@ Replace `8888` with the actual port number the site is running on.
 ### 8: Deploy to Netlify
 Before deploying, ensure that all local modifications have been committed and pushed to your GitHub repository. Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
 
-For a detailed guide, see '[Setting Up and Deploying to Netlify](https://github.com/1varunvc/sms-scheduler-01/edit/main/README.md#getting-twilio-credentials)' below.
+For a detailed guide, see '[Setting Up and Deploying to Netlify](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-and-deploying-to-netlify)' below.
 
 ### 9: Schedule the Function
 Utilize EasyCron to automate the execution of your Netlify function, adhering to your desired scheduling. Configure the cron job to target your function's Netlify endpoint URL, ensuring reliable, timed SMS dispatch.
 
-For a detailed guide, see '[Setting Up EasyCron](https://github.com/1varunvc/sms-scheduler-01/edit/main/README.md#getting-twilio-credentials)' below.
+For a detailed guide, see '[Setting Up EasyCron](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-easycron)' below.
 
 ## Getting Twilio Credentials
 
