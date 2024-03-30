@@ -65,13 +65,6 @@ Copy the `netlify.toml.example` file to a new file named `netlify.toml` and adju
 cp netlify.toml.example netlify.toml
 ```
 
-The `netlify.toml` file allows you to define settings related to the build process, function deployment, and other Netlify-specific configurations. Ensure to review and update paths or commands that match your project structure and requirements. This file is particularly important for defining:
-
-- Build commands and publish directory
-- Function directory for serverless functions
-- Any context-specific environment variables for different deploy contexts (e.g., production, deploy-preview)
-- Headers, redirects, or rewrite rules
-
 ### Note on Environment Variables:
 
 When deploying to Netlify, remember to set sensitive environment variables (like `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, etc.) directly in the Netlify UI under Site Settings > Build & Deploy > Environment, to keep them secure.
