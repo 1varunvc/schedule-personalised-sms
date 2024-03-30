@@ -19,7 +19,7 @@ jobs:
     - name: Remove Private Files
       run: |
         rm -f messages.js  # Ensure the path is correct if messages.js is not in the root
-        rm -f .github
+        rm -rf .github
 
     - name: Push to Public Repository
       run: |
