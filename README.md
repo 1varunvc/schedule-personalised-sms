@@ -23,10 +23,13 @@ This application schedules personalized SMS'. Leveraging Twilio for SMS services
 Create and set up your Twilio account to manage SMS services. This involves verifying two phone numbers: one for local testing and the other for production use. For a detailed guide, see '[Getting Twilio Credentials](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#getting-twilio-credentials)' below.
 
 ### 2. Clone the Repository
+Import this repository into [a new repository](https://github.com/new/import) on your account.
+Clone URL: https://github.com/1varunvc/schedule-personalised-sms.git
 
+Clone your remote repository to your local:
 ```bash
-git clone https://github.com/1varunvc/schedule-personalised-sms.git
-cd schedule-personalised-sms
+git clone https://github.com/USERNAME/REPOSITORY_NAME.git
+cd REPOSITORY_NAME
 ```
 
 ### 3. Install Dependencies
