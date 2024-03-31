@@ -75,6 +75,10 @@ When deploying to Netlify, remember to set sensitive environment variables (like
 ### 5: Messages Configuration
 Copy the `messages.js.example` file to a new file named `messages.js` and populate it with your personalized message. The application is designed to randomly select messages from this file.
 
+```bash
+cp messages.js.example messages.js
+```
+
 ### 6: Adjust for Local Development and Production
 In `netlify/functions/sendSMS.js`, change `const phoneNumber = process.env.PHONE_NUMBER_2;` to `const phoneNumber = process.env.PHONE_NUMBER_1`; for local testing, and back to `process.env.PHONE_NUMBER_2` for production. 
 
