@@ -1,6 +1,6 @@
 # Scheduled Personalised SMS
 
-This application schedules personalized SMS'. Leveraging Twilio for SMS services and Netlify Functions for a serverless architecture, it's designed to send, say, daily morning reminders or notifications!
+This application orchestrates personalized SMS messages, utilizing Twilio for SMS services and Netlify Functions for a streamlined serverless architecture. Crafted to effortlessly dispatch daily morning reminders or notifications, it streamlines communication for optimal user engagement.
 
 ## Features
 
@@ -135,6 +135,9 @@ Replace `8888` with the actual port number the site is running on.
 
 ### 8: Deploy to Netlify
 Before deploying, ensure that all local modifications have been committed and pushed to your GitHub repository. Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
+```bash
+git push origin main
+```
 
 For a detailed guide, see '[Setting Up and Deploying to Netlify](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-and-deploying-to-netlify)' below.
 
