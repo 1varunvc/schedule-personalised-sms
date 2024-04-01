@@ -1,26 +1,26 @@
-# Scheduled Personalised SMS
+# 📅 Scheduled Personalised SMS
 
 This application orchestrates personalized SMS messages, utilizing Twilio for SMS services and Netlify Functions for a streamlined serverless architecture. Crafted to effortlessly dispatch daily morning reminders or notifications, it streamlines communication for optimal user engagement.
 
 ## Features
 
-- **Serverless Architecture**: Utilizes Netlify Functions for a scalable and maintenance-free backend.
-- **Flexible Scheduling**: Schedule SMS messages to be sent at specific times.
-- **Twilio Integration**: Leverages Twilio's robust API for reliable SMS delivery.
-- **Secure Configuration**: Employs environment variables to securely store sensitive information.
+- **Serverless Architecture**: Utilizes Netlify Functions for a scalable and maintenance-free backend. 🚀
+- **Flexible Scheduling**: Schedule SMS messages to be sent at specific times. 🕒
+- **Twilio Integration**: Leverages Twilio's robust API for reliable SMS delivery. 📲
+- **Secure Configuration**: Employs environment variables to securely store sensitive information. 🔒
 
 ## Prerequisites
 
-- [Twilio](https://www.twilio.com/) account: Required for SMS service integration. Twilio also provides initial credits for new accounts, facilitating a smooth start.
-- [Git](https://git-scm.com/): Essential for version control and source code management.
-- [Node.js](https://nodejs.org/en/): Necessary for executing the project in a local development environment.
-- [Netlify](https://www.netlify.com/): For hosting and managing serverless functions.
-- [EasyCron](https://www.easycron.com/) Account: Offers a generous free tier for scheduling tasks, making it a cost-effective solution for automating your SMS dispatch.
+- [Twilio](https://www.twilio.com/) account: Required for SMS service integration. Twilio also provides initial credits for new accounts, facilitating a smooth start. 📞
+- [Git](https://git-scm.com/): Essential for version control and source code management. 🔄
+- [Node.js](https://nodejs.org/en/): Necessary for executing the project in a local development environment. 💻
+- [Netlify](https://www.netlify.com/): For hosting and managing serverless functions. ☁️
+- [EasyCron](https://www.easycron.com/) Account: Offers a generous free tier for scheduling tasks, making it a cost-effective solution for automating your SMS dispatch. ⏲️
 
 ## Setup Instructions
 
 ### 1: Twilio Account Setup
-Create and set up your Twilio account to manage SMS services. This involves verifying two phone numbers: one for local testing and the other for production use. For a detailed guide, see '[Getting Twilio Credentials](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#getting-twilio-credentials)' below.
+Create and set up your Twilio account to manage SMS services. This involves verifying two phone numbers: one for local testing and the other for production use. For a detailed guide, see '[Getting Twilio Credentials](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#getting-twilio-credentials)' below. 🔑
 
 ### 2. Clone the Repository
 Import this repository into [a new repository](https://github.com/new/import) on your account.
@@ -40,7 +40,7 @@ npm install
 
 ### 4. Configure Environment Variables
 
-Configure your environment variables by duplicating `.env.example` and `netlify.toml.example` files to `.env` and `netlify.toml`, respectively. Populate these files with your specific configurations, including Twilio account details and the phone numbers for testing and production.
+Configure your environment variables by duplicating `.env.example` and `netlify.toml.example` files to `.env` and `netlify.toml`, respectively. Populate these files with your specific configurations, including Twilio account details and the phone numbers for testing and production. ⚙️
 
 #### A. Environment Variables File
 
@@ -70,17 +70,13 @@ cp netlify.toml.example netlify.toml
 
 ### Note on Environment Variables:
 
-When deploying to Netlify, remember to set sensitive environment variables (like `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, etc.) directly in the Netlify UI under Site Settings > Build & Deploy > Environment, to keep them secure.
+When deploying to Netlify, remember to set sensitive environment variables (like `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, etc.) directly in the Netlify UI under Site Settings > Build & Deploy > Environment, to keep them secure. 🛡️
 
 ### 5: Messages Configuration
-Copy the `messages.js.example` file to a new file named `messages.js` and populate it with your personalized message. The application is designed to randomly select messages from this file.
-
-```bash
-cp messages.js.example messages.js
-```
+Copy the `messages.js.example` file to a new file named `messages.js` and populate it with your personalized message. The application is designed to randomly select messages from this file. ✉️
 
 ### 6: Adjust for Local Development and Production
-In `netlify/functions/sendSMS.js`, change `const phoneNumber = process.env.PHONE_NUMBER_2;` to `const phoneNumber = process.env.PHONE_NUMBER_1`; for local testing, and back to `process.env.PHONE_NUMBER_2` for production. 
+In `netlify/functions/sendSMS.js`, change `const phoneNumber = process.env.PHONE_NUMBER_2;` to `const phoneNumber = process.env.PHONE_NUMBER_1`; for local testing, and back to `process.env.PHONE_NUMBER_2` for production. 🔄
 
 ### 7. Local Development
 
@@ -97,7 +93,7 @@ Open your terminal and run the following command to install the Netlify CLI glob
 npm install netlify-cli -g
 ```
 
-This command installs the Netlify CLI globally, allowing you to access it from any directory in your terminal.
+This command installs the Netlify CLI globally, allowing you to access it from any directory in your terminal. 🌐
 
 #### B. Authenticate with Netlify
 
@@ -107,7 +103,7 @@ After installing the CLI, you need to authenticate your Netlify account. Run the
 netlify login
 ```
 
-This command will open a browser window asking you to log in to Netlify and authorize the Netlify CLI. Follow the prompts to authenticate. Once authenticated, you can close the browser window.
+This command will open a browser window asking you to log in to Netlify and authorize the Netlify CLI. Follow the prompts to authenticate. Once authenticated, you can close the browser window. 🔐
 
 #### C. Initialize Your Site
 
@@ -117,7 +113,7 @@ Navigate to your project's directory in the terminal. If you're deploying a site
 netlify init
 ```
 
-This command will guide you through setting up a new site on Netlify if your project isn't already linked or it will help you link to an existing site. You'll have options to set up continuous deployment from a git provider.
+This command will guide you through setting up a new site on Netlify if your project isn't already linked or it will help you link to an existing site. You'll have options to set up continuous deployment from a git provider. 🛠️
 
 #### D. Run the script locally
 ```bash
@@ -131,7 +127,7 @@ In another terminal, run:
 curl -X GET http://localhost:8888/.netlify/functions/sendSMS -H "Content-Type: application/json"
 ```
 
-Replace `8888` with the actual port number the site is running on.
+Replace `8888` with the actual port number the site is running on. 🖥️
 
 ### 8: Deploy to Netlify
 Before deploying, ensure that all local modifications have been committed and pushed to your GitHub repository.
@@ -140,12 +136,12 @@ git push origin main
 ```
 
 Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
-For a detailed guide, see '[Setting Up and Deploying to Netlify](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-and-deploying-to-netlify)' below.
+For a detailed guide, see '[Setting Up and Deploying to Netlify](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-and-deploying-to-netlify)' below. 🚀
 
 ### 9: Schedule the Function
 Utilize EasyCron to automate the execution of your Netlify function, adhering to your desired scheduling. Configure the cron job to target your function's Netlify endpoint URL, ensuring reliable, timed SMS dispatch.
 
-For a detailed guide, see '[Setting Up EasyCron](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-easycron)' below.
+For a detailed guide, see '[Setting Up EasyCron](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-easycron)' below. 📆
 
 ## Getting Twilio Credentials
 
@@ -156,8 +152,8 @@ To use Twilio for sending SMS messages, you'll need to obtain your Account SID a
 2. **Navigate to the Dashboard**: Once logged in, you'll be directed to the Twilio Console Dashboard. Here, you can find your Account SID and Auth Token.
 
 3. **Find Your Account SID and Auth Token**:
-    - Your **Account SID** is visible right on the dashboard, labeled as **ACCOUNT SID**.
-    - Your **Auth Token** can be found next to the Account SID. Click on `Show` to reveal the Auth Token.
+   - Your **Account SID** is visible right on the dashboard, labeled as **ACCOUNT SID**.
+   - Your **Auth Token** can be found next to the Account SID. Click on `Show` to reveal the Auth Token.
 
 4. **Secure Your Credentials**: Copy these values into your `.env` file for local development. Never commit your `.env` file or directly include your SID/Token in your public code.
 
@@ -177,11 +173,13 @@ To deploy your application on Netlify with continuous deployment:
 
 5. **Configure Build Settings**: Input the build command and publish directory for your project if applicable. For serverless functions, specify the functions directory.
 
-    - **Build Command**: (Leave blank if you're only deploying functions)
-    - **Publish Directory**: `.` (Indicates there's no specific directory for static content.)
-    - **Functions Directory**: Specify if you have serverless functions, e.g., `netlify/functions`
+   - **Build Command**: (Leave blank if you're only deploying functions)
+   - **Publish Directory**: `.` (Indicates there's no specific directory for static content.)
+   - **Functions Directory**: Specify if you have serverless functions, e.g., `netlify/functions`
 
-6. **Set Environment Variables**: Under **Advanced build settings**, add environment variables such as `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and any others required by your application.
+6. **Set Environment Variables**: Under **Advanced build settings**, add environment variables such as `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and any others required
+
+by your application.
 
 7. **Deploy Site**: Click **Deploy site**. Netlify will begin the deployment process.
 
@@ -198,8 +196,8 @@ To schedule your serverless function to run at specific times:
 2. **Create a New Cron Job**: Once logged in, click on **Create New Cron Job**.
 
 3. **Configure Your Cron Job**:
-    - In the **URL to call** field, enter the Netlify function endpoint URL. It will look something like `https://your-netlify-site-name.netlify.app/.netlify/functions/your-function-name`.
-    - Set the schedule according to your preference, using the cron expression format.
+   - In the **URL to call** field, enter the Netlify function endpoint URL. It will look something like `https://your-netlify-site-name.netlify.app/.netlify/functions/your-function-name`.
+   - Set the schedule according to your preference, using the cron expression format.
 
 4. **Start Cron Job**: Save your cron job. EasyCron will now trigger your Netlify function according to the schedule you set.
 
@@ -209,8 +207,8 @@ Remember to replace placeholders like `your-netlify-site-name`, `your-function-n
 
 ## Usage
 
-Once deployed, the application will automatically send SMS messages at the scheduled times. You can modify the schedule and message content by editing the serverless function and redeploying.
+Once deployed, the application will automatically send SMS messages at the scheduled times. You can modify the schedule and message content by editing the serverless function and redeploying. 📬
 
 ## Contributing
 
-Contributions to the application are welcome. Please ensure to follow the best practices for coding and documentation. Create a pull request with a clear description of your changes.
+Contributions to the application are welcome. Please ensure to follow the best practices for coding and documentation. Create a pull request with a clear description of your changes. 🤝
