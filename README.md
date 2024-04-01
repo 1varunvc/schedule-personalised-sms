@@ -134,11 +134,12 @@ curl -X GET http://localhost:8888/.netlify/functions/sendSMS -H "Content-Type: a
 Replace `8888` with the actual port number the site is running on.
 
 ### 8: Deploy to Netlify
-Before deploying, ensure that all local modifications have been committed and pushed to your GitHub repository. Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
+Before deploying, ensure that all local modifications have been committed and pushed to your GitHub repository.
 ```bash
 git push origin main
 ```
 
+Then, through Netlify's dashboard, initiate a new site deployment by connecting your GitHub repository and configuring the build settings and environment variables as detailed above.
 For a detailed guide, see '[Setting Up and Deploying to Netlify](https://github.com/1varunvc/sms-scheduler-01/tree/main?tab=readme-ov-file#setting-up-and-deploying-to-netlify)' below.
 
 ### 9: Schedule the Function
