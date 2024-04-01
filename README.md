@@ -13,7 +13,7 @@ This application orchestrates personalized SMS messages, utilizing Twilio for SM
 
 - [Twilio](https://www.twilio.com/) account: Required for SMS service integration. Twilio also provides initial credits for new accounts, facilitating a smooth start. 📞
 - [Git](https://git-scm.com/): Essential for version control and source code management. 🔄
-- [Node.js](https://nodejs.org/en/): Necessary for executing the project in a local development environment. 💻
+- [Node.js](https://nodejs.org/en/): Necessary for executing the project. 💻
 - [Netlify](https://www.netlify.com/): For hosting and managing serverless functions. ☁️
 - [EasyCron](https://www.easycron.com/) Account: Offers a generous free tier for scheduling tasks, making it a cost-effective solution for automating your SMS dispatch. ⏲️
 
