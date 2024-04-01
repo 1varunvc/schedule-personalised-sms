@@ -1,4 +1,4 @@
-# 📅 Scheduled Personalised SMS
+# 📅 Schedule Personalised SMS
 
 This application orchestrates personalized SMS messages, utilizing Twilio for SMS services and Netlify Functions for a streamlined serverless architecture. Crafted to effortlessly dispatch daily morning reminders or notifications, it streamlines communication for optimal user engagement.
 
