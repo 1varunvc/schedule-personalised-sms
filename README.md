@@ -153,7 +153,7 @@ To use Twilio for sending SMS messages, you'll need to obtain your Account SID a
 
 3. **Find Your Account SID and Auth Token**:
    - Your **Account SID** is visible right on the dashboard, labeled as **ACCOUNT SID**.
-   - Your **Auth Token** can be found next to the Account SID. Click on `Show` to reveal the Auth Token.
+   - Your **Auth Token** can be found next to the Account SID. Click on `Show` to reveal the Auth Token
 
 4. **Secure Your Credentials**: Copy these values into your `.env` file for local development. Never commit your `.env` file or directly include your SID/Token in your public code.
 
